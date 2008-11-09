@@ -1,5 +1,10 @@
 Revision history for MojoX-Dispatcher-FilterChain
 
-0.01    2008-11-12 00:00::00
+0.02    2008-11-09 00:00::00
+        - Context class
+        - DetectLang example filter
+        - More tests
+
+0.01    2008-11-08 00:00::00
         First version.
 

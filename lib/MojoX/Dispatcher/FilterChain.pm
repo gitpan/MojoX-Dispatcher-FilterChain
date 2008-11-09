@@ -7,14 +7,14 @@ use base 'Mojo::Base';
 
 use MojoX::Dispatcher::FilterChain::Constants;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use constant DEBUG => $ENV{MOJOX_DISPATCHER_FILTERCHAIN_DEBUG} || 0;
 
-__PACKAGE__->attr('filters', default => sub {[]});
+__PACKAGE__->attr('filters', default => sub { [] });
 
 sub add {
-    my $self = shift;
+    my $self   = shift;
     my $filter = shift;
 
     my $name = ref $filter;
@@ -29,18 +29,14 @@ sub process {
     foreach my $filter (@{$self->filters}) {
         my $name = ref $filter;
 
-        if ($filter->can('run')) {
-            warn "Running '$name' filter" if DEBUG;
+        warn "Running '$name' filter" if DEBUG;
 
-            my $proceed = $filter->run(@_);
+        my $proceed = $filter->run(@_);
 
-            warn "Stop filter chain after '$name' filter"
-              if DEBUG and $proceed == LAST;
+        warn "Stop filter chain after '$name' filter"
+          if DEBUG and $proceed == LAST;
 
-            last if $proceed == LAST;
-        } else {
-            warn "Filter '$name' has no 'run' method, skipping." if DEBUG;
-        }
+        last if $proceed == LAST;
     }
 }
 
