@@ -5,9 +5,9 @@ use warnings;
 
 use base 'Mojo::Base';
 
-use MojoX::Dispatcher::FilterChain::Constants;
+use MojoX::FilterChain::Constants;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use constant DEBUG => $ENV{MOJOX_DISPATCHER_FILTERCHAIN_DEBUG} || 0;
 
